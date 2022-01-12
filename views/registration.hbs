@@ -1,0 +1,25 @@
+{{>header}}
+<div class="container">
+    <form id="formReg">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" id="password">
+        </div>
+        <div class="mb-3 form-check">
+            <input name="checkUser" type="checkbox" class="form-check-input" id="checkUser">
+            <label class="form-check-label" for="checkUser">Зарегистрироваться как ученик</label>
+        </div>
+        <div class="mb-3 form-check">
+            <input name="checkManager" type="checkbox" class="form-check-input" id="checkManager">
+            <label class="form-check-label" for="checkManager">Зарегистрироваться как преподаватель</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+    </form>
+</div>
+
+
+<script defer src="/js/registration.js"></script>

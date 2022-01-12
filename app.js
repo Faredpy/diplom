@@ -9,12 +9,12 @@ const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const app = express()
 
-const PORT = process.env.PORT
+const PORT = 3001
 const sessionConfig = {
     name: 'sid',
     store: new FileStore(),
     secret: process.env.SESSION_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
         expires: 1000 * 60 * 60,
