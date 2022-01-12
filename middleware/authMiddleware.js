@@ -14,7 +14,7 @@ module.exports = function (req, res, next) {
         req.user = tokenDecoded
         next()
     }catch (e) {
-        next()
+        res.redirect('/users/login')
         // console.log(e)
         // res.status(500).json({message: "Пользователь не авторизован"})
     }

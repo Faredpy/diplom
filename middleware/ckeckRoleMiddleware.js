@@ -6,7 +6,8 @@ module.exports = function (role) {
             next()
         }
         try {
-            const token = req.headers.authorization.split(' ')[1]
+            const token = req.session.user.token
+            // const token = req.headers.authorization.split(' ')[1]
             if(!token) {
                 return res.status(401).json({message: 'Пользователь не авторизован'})
             }
@@ -18,8 +19,9 @@ module.exports = function (role) {
             next()
 
         }catch(e){
-            console.log(e)
-            res.status(401).json({message: "Пользователь не авторизован"})
+            res.redirect('/accesserror')
+            // console.log(e)
+            // res.status(401).json({message: "Пользователь не авторизован"})
         }
     }
 }

@@ -5,9 +5,9 @@ class ticketController {
     async getAllTicket(req, res) {
 
         try {
-            const undecodedToken = {};
-            undecodedToken.status = 'ADMIN'
-            if (undecodedToken.status !== ('ADMIN' || 'OWNER')) {
+            const undecodedToken = req.user;
+            console.log(undecodedToken)
+            if (undecodedToken.role !== ('ADMIN' || 'OWNER')) {
                 res.redirect('tickets/form')
             }
             const allTickets = await Ticket.findAll({
@@ -27,7 +27,7 @@ class ticketController {
 
         try {
             const newTicket = await Ticket.create({
-                userId: 1,
+                userId: req.user.id,
                 description: req.body.description,
                 statusId: 1
             })
@@ -51,46 +51,31 @@ class ticketController {
     }
 
     async editTicket(req, res) {
-        const undecodedToken = {}
-        undecodedToken.status = 'ADMIN'
-        if (undecodedToken.status !== ('ADMIN' || 'OWNER')) {
-            res.redirect('tickets/form')
-        }
 
-        try {
-            const editedTicket = await Ticket.update({ statusId: 2 }, { where: { id: req.body.ticketId } })
-            const newTicketAnswer = await TicketAnswer.create({
-                ticketId: req.body.ticketId,
-                answer: req.body.inputValue,
-                adminId: 1,
-            })
-            res.sendStatus(200)
-        } catch (error) {
-            console.log(errror.message);
-        }
-
-
-    }
-
-    async cancelTicket(req, res) {
-        const undecodedToken = {};
-        undecodedToken.status = 'ADMIN'
-        if (undecodedToken.status !== ('ADMIN' || 'OWNER')) {
-            res.redirect('tickets/form')
-        }
-        const newStatus = await Status.create({
-            title: 'Отменён'
-        })
         try {
             const editedTicket = await Ticket.update({ statusId: 3 }, { where: { id: req.body.ticketId } })
             const newTicketAnswer = await TicketAnswer.create({
                 ticketId: req.body.ticketId,
-                answer: 'Отклонено',
-                adminId: 1,
+                answer: req.body.inputValue,
+                adminId: req.user.id,
             })
             res.sendStatus(200)
         } catch (error) {
-            console.log(errror.message);
+            console.log(error.message);
+        }
+    }
+
+    async cancelTicket(req, res) {
+        try {
+            const editedTicket = await Ticket.update({ statusId: 4 }, { where: { id: req.body.ticketId } })
+            const newTicketAnswer = await TicketAnswer.create({
+                ticketId: req.body.ticketId,
+                answer: 'Отклонено',
+                adminId: req.user.id,
+            })
+            res.sendStatus(200)
+        } catch (error) {
+            console.log(error.message);
         }
     }
 }

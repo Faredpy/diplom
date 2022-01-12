@@ -2,6 +2,8 @@ const homeButton = document.querySelector('#home')
 const signInButton = document.querySelector("#signin")
 const signUpButton = document.querySelector("#signup")
 const logoutButton = document.querySelector("#logout")
+const ticketsButton = document.querySelector("#tickets")
+
 
 if(signInButton) {
     homeButton.addEventListener("click", () => {
@@ -25,5 +27,11 @@ if(logoutButton){
         }
 
         window.location = ('/users')
+    })
+}
+
+if(ticketsButton) {
+    ticketsButton.addEventListener("click", async () => {
+        window.location = ('/tickets')
     })
 }

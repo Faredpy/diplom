@@ -1,6 +1,11 @@
 class indexController {
     async indexGet (req, res) {
-        res.render('index')
+        if(req.user) {
+            const isAuthorised = req.user
+            console.log(req.user)
+            return res.render('index', {isAuthorised})
+        }
+        return res.render('index')
     }
 
     async deleteSession(req, res) {
