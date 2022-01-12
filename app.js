@@ -14,7 +14,7 @@ const sessionConfig = {
     name: 'sid',
     store: new FileStore(),
     secret: process.env.SESSION_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
         expires: 1000 * 60 * 60,

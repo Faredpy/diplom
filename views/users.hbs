@@ -1,0 +1,10 @@
+{{>header}}
+{{#if isAuthorised}}
+    <div class="container">
+        <div>Здесь профиль пользователя</div>
+    </div>
+{{else}}
+    <div class="container">
+        <div>Для просмотра данной страницы необходимо войти или зарегистрироваться</div>
+    </div>
+{{/if}}
