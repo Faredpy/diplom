@@ -11,10 +11,10 @@ const generateJwt = (id, email, role) => {
 }
 
 class userController {
-    async getAllUsers (req, res) {
-        // console.log(req.session.user)
-        if(req.session.user) {
-            const isAuthorised = req.session.user.token
+    async getProfile (req, res) {
+        if(req.user) {
+            const isAuthorised = req.user
+            console.log(req.user)
             return res.render('users', {isAuthorised})
         }
         return res.render('users')
@@ -51,19 +51,31 @@ class userController {
     }
 
     async login (req,res) {
-        const {email, password, checkUser, checkManager} = req.body
+
+        const {email, password} = req.body
         if ( !email || !password ) {
-            return res.status(400).end()
+            return res.status(400).json({message: 'No oke'})
         }
         try {
+            const user = await User.findOne({where: {email}})
+            if(!user) {
+                console.log('такого юзера нет!')
+                return res.status(402).json({message: 'No oke'})
+            }
 
+            const authUser = await bcrypt.compareSync(password, user.password)
+            if(!authUser) {
+                return res.status(403).json({message: 'No oke'})
+            }
+            const token = generateJwt(user.id, user.email, user.role)
+            req.session.user = {token}
+            // res.setHeader('Authorization', req.headers.authorization)
+            res.setHeader('Content-Type', 'text/html')
+
+            return res.json({token})
         }catch(e) {
-            return res.status(403).end()
+            return res.status(500).json({ error: e.message})
         }
-    }
-
-    async check (req,res) {
-
     }
 
 }

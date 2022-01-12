@@ -6,7 +6,7 @@ module.exports = function (req, res, next) {
     }
 
     try {
-        const token = req.headers.authorization.split(' ')[1]
+        const token = req.session.user.token
         if(!token) {
             return res.status(401).json({message: 'Пользователь не авторизован'})
         }
@@ -14,7 +14,8 @@ module.exports = function (req, res, next) {
         req.user = tokenDecoded
         next()
     }catch (e) {
-        console.log(e)
-        res.status(401).json({message: "Пользователь не авторизован"})
+        next()
+        // console.log(e)
+        // res.status(500).json({message: "Пользователь не авторизован"})
     }
 }
