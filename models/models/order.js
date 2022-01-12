@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Status, {
         foreignKey: 'statusId'
       })
+      this.belongsTo(models.Tag, {
+        foreignKey: 'tagsId'
+      })
     }
   };
   Order.init({
@@ -26,7 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     productId: DataTypes.INTEGER,
     description: DataTypes.TEXT,
     file: DataTypes.TEXT,
-    statusId: DataTypes.INTEGER
+    statusId: DataTypes.INTEGER,
+    scopeOfWork: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Order',

@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.TicketAnswer, {
         foreignKey: 'adminId'
       })
+      this.belongsToMany(models.Tag, {
+        through: 'UserTags',
+        foreignKey: 'userId'
+      })
     }
   };
   User.init({

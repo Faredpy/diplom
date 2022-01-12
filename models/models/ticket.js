@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Ticket.init({
     userId: DataTypes.INTEGER,
+    title: DataTypes.STRING,
     description: DataTypes.TEXT,
     statusId: DataTypes.INTEGER
   }, {
