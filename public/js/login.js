@@ -9,8 +9,7 @@ formLog.addEventListener("submit", async(event) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiZW1haWwiOiJyZWRAcmVkIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE2NDIwMDQ5MzcsImV4cCI6MTY0MjA5MTMzN30.oPqGT-7intp9khCI-Y9pZ0VUhHtFeFA5Xvb50oBsM3E`
-        },
+            },
         body: JSON.stringify({email, password})
     })
     const statham = await response.json()
