@@ -2,6 +2,7 @@ const Router = require('express')
 const router = new Router()
 const indexController = require('../controller/indexController')
 
+
 const userRouter = require('./userRouter')
 const chatRouter = require('./chatRouter')
 const orderRouter = require('./orderRouter')
@@ -15,5 +16,6 @@ router.use('/tickets', ticketRouter)
 
 router.get('/', indexController.indexGet)
 router.delete('/logout', indexController.deleteSession)
+
 
 module.exports = router
