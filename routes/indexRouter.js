@@ -7,10 +7,10 @@ const orderRouter = require('./orderRouter')
 const ticketRouter = require('./ticketRouter')
 
 
-router.use('./users', userRouter)
-router.use('./chats', chatRouter)
-router.use('./orders', orderRouter)
-router.use('./tickets', ticketRouter)
+router.use('/users', userRouter)
+router.use('/chats', chatRouter)
+router.use('/orders', orderRouter)
+router.use('/tickets', ticketRouter)
 
 
 router.get('/', (req, res) => {
