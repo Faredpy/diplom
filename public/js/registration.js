@@ -1,5 +1,4 @@
 const formReg = document.querySelector("#formReg")
-console.log('привет')
 
 formReg.addEventListener("submit", async(event) => {
     event.preventDefault()

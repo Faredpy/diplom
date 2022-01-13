@@ -1,4 +1,4 @@
-const { User, Tag } = require('../models/models')
+const { User, Tag, UserManager, UserTag} = require('../models/models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -17,7 +17,7 @@ class userController {
                 // const manager = await User.findOne({where: {id: req.user.Id}})
                 const tags = await Tag.findAll()
                 req.user.tags = tags
-                // console.log(req.user.tags)
+                // const managerTags = await Tag.findAll({where})
             }
             const isAuthorised = req.user
             // console.log(req.user)
@@ -89,6 +89,12 @@ class userController {
         console.log(data)
         try {
             const user = await User.update(data, {where: {email: data.email}})
+            data.tags.map(async el => {
+                const tagGetDb = await Tag.findOne({where: { title: el}, raw: true})
+                console.log(tagGetDb.id)
+                const tagsId = tagGetDb.id
+                await UserTag.create({userId:data.id, tagsId})
+            })
             res.json(user)
         } catch(e) {
           console.log(e)
