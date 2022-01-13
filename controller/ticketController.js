@@ -5,6 +5,7 @@ class ticketController {
     async getAllTicket(req, res) {
 
         try {
+            const isAuthorised = req.user
             const undecodedToken = req.user;
             console.log(undecodedToken)
             if (undecodedToken.role !== ('ADMIN' || 'OWNER')) {
@@ -16,7 +17,7 @@ class ticketController {
                 },
                 raw: true
             })
-            res.render('TicketList', { allTickets })
+            res.render('TicketList', { allTickets, isAuthorised })
         } catch (error) {
             console.log(error.message);
         }
@@ -24,30 +25,23 @@ class ticketController {
     }
 
     async createTicket(req, res) {
-
         try {
             const newTicket = await Ticket.create({
                 userId: req.user.id,
+                title: req.body.title,
                 description: req.body.description,
                 statusId: 1
             })
-            console.log(newTicket);
-            if (newTicket.userId) {
-                res.sendStatus(200)
-                res.setHeader('Content-Type', 'text/html')
-                return res.json(newTicket)
-            } else {
-                res.sendStatus(500)
-            }
+            res.json(newTicket)
         } catch (error) {
             console.log(error.message);
         }
     }
 
     renderFormForTickets(req, res) {
-
-        res.render('TicketForm')
-
+        const isAuthorised = req.user
+        console.log(req.user)
+        return res.render('TicketForm', { isAuthorised })
     }
 
     async editTicket(req, res) {
@@ -59,7 +53,12 @@ class ticketController {
                 answer: req.body.inputValue,
                 adminId: req.user.id,
             })
-            res.sendStatus(200)
+            if (newTicketAnswer.ticketId) {
+                res.sendStatus(200)
+            } else {
+                res.sendStatus(500)
+            }
+
         } catch (error) {
             console.log(error.message);
         }

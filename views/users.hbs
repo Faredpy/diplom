@@ -1,25 +1,24 @@
-{{>header}}
 {{#if isAuthorised}}
-    <div class="container">
-        <h1>Профиль</h1>
-        <form id="fornProfile">
-            <div class="mb-3">
-                <label for="firstName" class="form-label">Имя</label>
-                <input name="firstName" type="text" class="form-control" id="firstName">
-            </div>
-            <div class="mb-3">
-                <label for="lastName" class="form-label">Фамилия</label>
-                <input name="lastName" type="text" class="form-control" id="lastName">
-            </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Телефон</label>
-                <input name="phone" type="text" class="form-control" id="phone">
-            </div>
-            <button type="submit" class="btn btn-primary">Отправить данные</button>
-        </form>
-    </div>
+<div class="container">
+    <h1>Профиль</h1>
+    <form id="fornProfile">
+        <div class="mb-3">
+            <label for="firstName" class="form-label">Имя</label>
+            <input name="firstName" type="text" class="form-control" id="firstName">
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Фамилия</label>
+            <input name="lastName" type="text" class="form-control" id="lastName">
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Телефон</label>
+            <input name="phone" type="text" class="form-control" id="phone">
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить данные</button>
+    </form>
+</div>
 {{else}}
-    <div class="container">
-        <div>Для просмотра данной страницы необходимо войти или зарегистрироваться</div>
-    </div>
+<div class="container">
+    <div>Для просмотра данной страницы необходимо войти или зарегистрироваться</div>
+</div>
 {{/if}}

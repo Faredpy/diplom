@@ -1,0 +1,43 @@
+<div class="ls-navigation">
+  <div class="close-div">
+    <button type="button" id="closeBut" class="btn-close ls-close-but" aria-label="Close"></button>
+  </div>
+  <div class="buttons-div">
+    <button type="button" id="makeOrder" class="btn btn-link icons-links"><img class="ls-icons"
+        src="/img/icons8-purchase-order-64.png" alt="">
+      Заказать</button>
+    <button type="button" id="ordersBut" class="btn btn-link icons-links"><img class="ls-icons"
+        src="/img/icons8-shopping-bag-64.png" alt=""> Мои
+      заказы</button>
+    <button type="button" id="finance" class="btn btn-link icons-links"><img class="ls-icons"
+        src="/img/icons8-money-64.png" alt="">Мои
+      финансы</button>
+    <button type="button" id="support" class="btn btn-link icons-links"><img class="ls-icons"
+        src="/img/icons8-headset-64.png" alt="">Поддержка</button>
+    <button type="button" id="profileBut" class="btn btn-link icons-links"><img class="ls-icons"
+        src="/img/icons8-male-user-64.png" alt="">Профиль</button>
+    <button type="button" id="faq" class="btn btn-link icons-links"><img class="ls-icons" src="/img/icons8-faq-64.png"
+        alt="">Полезное</button>
+  </div>
+  {{#if isAuthorised}}
+  <div class="manager-div">
+    <img src="/img/icons8-manager-100.png" alt="">
+    <div>{{#if isAuthorised.managerName}} {{isAuthorised.managerName}} {{else}} Менеджер {{/if}}</div>
+  </div>
+  {{/if}}
+  <div class="footer-div">
+    <div>Ознакомиться с договором</div>
+    <div class="social-icons">
+      <button type="button" id="twitter" class="btn btn-link social-links"><img class="ls-social-icons"
+          src="/img/icons8-twitter-100.png" alt=""></button>
+      <button type="button" id="inst" class="btn btn-link social-links"><img class="ls-social-icons"
+          src="/img/icons8-instagram-100.png" alt=""></button>
+      <button type="button" id="faceb" class="btn btn-link social-links"><img class="ls-social-icons"
+          src="/img/icons8-facebook-100.png" alt=""></button>
+      <button type="button" id="whatsapp" class="btn btn-link social-links"><img class="ls-social-icons"
+          src="/img/icons8-whatsapp-100.png" alt=""></button>
+    </div>
+    <div>8-952-334-44-48</div>
+  </div>
+</div>
+<script defer src="/js/sidebar.js"></script>

@@ -13,12 +13,13 @@
     <div class="rh-top-nav">
         {{#if isAuthorised}}
         <div>
-            <button type="button" class="btn btn-primary">Оформить заявку</button>
+            <button type="button" class="btn btn-primary" id="request">Оформить заявку</button>
         </div>
         <div>
             <button class="nav-link profile-button" data-bs-toggle="pill" id="profile" data-bs-target="#pills-profile"
                 type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><img
-                    src="/img/icons8-male-user-64.png" alt="">Профиль</button>
+                    src="/img/icons8-male-user-64.png" alt="" class="icons">{{#if
+                isAuthorised.firstName}}{{isAuthorised.firstName}}{{else}}Профиль{{/if}}</button>
         </div>
         <div>
             <button class="nav-link" id="logout" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button"
