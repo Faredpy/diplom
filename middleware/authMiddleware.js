@@ -23,9 +23,9 @@ module.exports = async function (req, res, next) {
         if (tokenDecoded.role === 'USER') {
             tokenDecoded['roleName'] = 'Пользователь'
             console.log('-------------------')
-        }else if (userInfo.role === 'MANAGER'){
+        }else if (tokenDecoded.role === 'MANAGER'){
             tokenDecoded['roleName'] = 'Менеджер'
-        }else if (userInfo.role === 'ADMIN'){
+        }else if (tokenDecoded.role === 'ADMIN'){
             tokenDecoded['roleName'] = 'Администратор'
         }
 
