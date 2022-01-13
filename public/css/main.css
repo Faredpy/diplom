@@ -1,8 +1,10 @@
 .main {
   margin-top: 75px;
   margin-left: 300px;
+  height: 1000px;
 }
 
-.body {
+body {
   font-family: 'Roboto', sans-serif;;
+  height: 1000px;
 }

@@ -15,7 +15,7 @@ cardsContainer.addEventListener('click', async (event) => {
       console.log(temp);
       return temp.remove()
     }
-    currentDiv.insertAdjacentHTML('beforeend', `<div id=div-input-${event.target.name} class="input-group mb-3">
+    currentDiv.insertAdjacentHTML('beforeend', `<div id=div-input-${event.target.name} class="input-group mb-3 ticket-edit-input">
   <input id="answer-${event.target.name}" type="text" class="form-control" placeholder="Введите ответ" aria-label="Recipient's username" aria-describedby="button-addon2">
   <button name="${event.target.name}" class="btn btn-outline-secondary" type="button" data-type="send" id="button-addon2">Отправить</button>
 </div>`)
