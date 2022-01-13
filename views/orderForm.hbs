@@ -1,0 +1,55 @@
+<form id="orderForm" action="">
+  <div>
+    <div>
+      <label for="productSelect">Тип работы</label>
+      <select name="changeProduct" id="productSelect" class="form-select" aria-label="Default select example">
+        <option selected>Выберите тип работы</option>
+        {{#each productsList}}
+        <option value="{{this.id}}">{{this.title}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div>
+      <label for="exampleDataList" class="form-label">Предмет</label>
+      <input name="changeTag" class="form-control" list="datalistOptions" id="exampleDataList"
+        placeholder="Введите предмет">
+      <datalist id="datalistOptions">
+        {{#each tagsList}}
+        <option id="{{this.id}}" value="{{this.title}}"></option>
+        {{/each}}
+      </datalist>
+    </div>
+    <div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Объем работы</label>
+        <input name="Scope" type="text" class="form-control" id="exampleFormControlInput1"
+          placeholder="Введите объем работы">
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Описание</label>
+      <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"
+        placeholder="Введите описание"></textarea>
+    </div>
+  </div>
+  <div id="managerList">
+  </div>
+  <button id="continueButton" type="Button" class="btn btn-primary">Продолжить</button>
+</form>
+
+<script defer src="/js/createOrder.js"></script>
+
+
+{{!-- <div class="card" style="width: 18rem;">
+  <img src="/img/icons8-manager-100.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">${el.firstName} ${el.lastName}</h5>
+    <p class="card-text">${el.email}<br>${el.phoneNumber}
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">${el.title}</li>
+  </ul>
+</div> --}}
