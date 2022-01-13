@@ -1,5 +1,17 @@
 const btnProf = document.querySelector('#btnProf')
 
+const tagButton = document.querySelector("#tagButton")
+const tagsArr = []
+
+tagButton.addEventListener("click", (event) => {
+    let tag = document.querySelector('#tags').value
+    tagsArr.push(tag)
+    const skills = document.querySelector("#skills")
+    document.querySelector("#tags").value = ''
+    skills.insertAdjacentHTML("beforeend", `<span class="label label-primary mr5 mb10 ib lh15" style="background-color:#babdbf">${tag}</span> `)
+
+})
+
 btnProf.addEventListener("click", async (event) => {
     const email = document.querySelector('#email').value
     const firstName = document.querySelector('#firstName').value
@@ -11,11 +23,15 @@ btnProf.addEventListener("click", async (event) => {
     if(firstName) objUpdate.firstName = firstName
     if(lastName) objUpdate.lastName = lastName
     if(phoneNumber) objUpdate.phoneNumber = phoneNumber
+    console.log(tags)
+
+
+
 
     if(role === 'Пользователь'){
 
     }else if(role === 'Менеджер'){
-
+        if(tagsArr.length > 0) objUpdate.tags = tagsArr
     }else if(role === 'Администратор'){
 
     }
@@ -33,6 +49,11 @@ btnProf.addEventListener("click", async (event) => {
         alert('Ошибонька')
     }
 
-    // window.location = ('/users')
+    const nameAndLast = document.querySelector("#headOne")
+    console.log(firstName)
+    console.log(lastName)
+    nameAndLast.textContent = `${firstName} ${lastName}`
 
 })
+
+

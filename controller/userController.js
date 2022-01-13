@@ -1,4 +1,4 @@
-const { User } = require('../models/models')
+const { User, Tag } = require('../models/models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -13,6 +13,12 @@ const generateJwt = (id, email, role) => {
 class userController {
     async getProfile (req, res) {
         if(req.user) {
+            if(req.user.role === 'MANAGER'){
+                // const manager = await User.findOne({where: {id: req.user.Id}})
+                const tags = await Tag.findAll()
+                req.user.tags = tags
+                // console.log(req.user.tags)
+            }
             const isAuthorised = req.user
             // console.log(req.user)
             return res.render('users', {isAuthorised})
@@ -80,6 +86,7 @@ class userController {
 
     async putUser (req, res) {
         const data = req.body
+        console.log(data)
         try {
             const user = await User.update(data, {where: {email: data.email}})
             res.json(user)
