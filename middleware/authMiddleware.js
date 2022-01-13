@@ -19,16 +19,18 @@ module.exports = async function (req, res, next) {
         tokenDecoded['phone'] = humanGet.phoneNumber
         if (tokenDecoded.role === 'USER') {
             tokenDecoded['roleName'] = 'Пользователь'
-            const managerGet = await User.findOne({ include: [{ model: UserManager, where: { userId: tokenDecoded.id } }], raw: true })
-            if (managerGet) {
-                tokenDecoded['managerId'] = managerGet.id
-                tokenDecoded['managerRoleName'] = 'Менеджер'
-                tokenDecoded['managerEmail'] = managerGet.email
-                tokenDecoded['managerPhone'] = managerGet.phoneNumber
-                tokenDecoded['managerFirstName'] = managerGet.firstName
-                tokenDecoded['managerLastName'] = managerGet.lastName
-            }
-        } else if (tokenDecoded.role === 'MANAGER') {
+
+            const managerGet = await User.findOne({include: [{ model: UserManager, where: { userId: tokenDecoded.id } }], raw: true })
+                if(managerGet) {
+                    tokenDecoded['managerId'] = managerGet.id
+                    tokenDecoded['managerRoleName'] = 'Менеджер'
+                    tokenDecoded['managerEmail'] = managerGet.email
+                    tokenDecoded['managerPhone'] = managerGet.phoneNumber
+                    tokenDecoded['managerFirstName'] = managerGet.firstName
+                    tokenDecoded['managerLastName'] = managerGet.lastName
+                }
+        }else if (tokenDecoded.role === 'MANAGER'){
+
             tokenDecoded['roleName'] = 'Менеджер'
         } else if (tokenDecoded.role === 'ADMIN') {
             tokenDecoded['roleName'] = 'Администратор'
@@ -37,7 +39,10 @@ module.exports = async function (req, res, next) {
         // console.log(tokenDecoded)
         req.user = tokenDecoded
         next()
-    } catch (e) {
+
+    }catch (e) {
+        console.log(e)
+
         res.redirect('/users/login')
         // console.log(e)
         // res.status(500).json({message: "Пользователь не авторизован"})
