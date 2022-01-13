@@ -1,0 +1,37 @@
+.top-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.lh-top-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rh-top-nav {
+   display: flex;
+  flex-direction: row;
+}
+
+.top-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-left: 20px;
+}
+
+#signin, #signup, #logout, #profile {
+  background-color: white;
+  border-color: white;
+  border-width: 0px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+#signup {
+  background-color: white;
+  border-color: white;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-width: 0px;
+}

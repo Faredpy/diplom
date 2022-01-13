@@ -1,24 +1,39 @@
-<div class="container">
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Diplom-Project</button>
-        </li>
-        {{#if isAuthorised  }}
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="logout" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Выйти</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="tickets" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Тикеты</button>
-        </li>
+<div class="top-navigation">
+    <div class="lh-top-nav">
+        <a href="/"><img src="/img/tild3334-3335-4430-a531-356335663133__image_1.png" alt="" width="250"
+                height="50"></a>
+        <div class="top-text">
+            <div style="margin-bottom: 0px">Работаем по всей</div>
+            <div style="margin-top: 0px">России 24/7</div>
+        </div>
+        <div class="top-text">
+            8-952-334-44-48
+        </div>
+    </div>
+    <div class="rh-top-nav">
+        {{#if isAuthorised}}
+        <div>
+            <button type="button" class="btn btn-primary">Оформить заявку</button>
+        </div>
+        <div>
+            <button class="nav-link profile-button" data-bs-toggle="pill" id="profile" data-bs-target="#pills-profile"
+                type="button" role="tab" aria-controls="pills-profile" aria-selected="false"><img
+                    src="/img/icons8-male-user-64.png" alt="">Профиль</button>
+        </div>
+        <div>
+            <button class="nav-link" id="logout" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button"
+                role="tab" aria-controls="pills-contact" aria-selected="false">Выйти</button>
+        </div>
         {{else}}
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="signin" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Войти</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="signup" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Зарегистрироваться</button>
-        </li>
+        <div>
+            <button class="nav-link" id="signin" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button"
+                role="tab" aria-controls="pills-profile" aria-selected="false">Войти</button>
+        </div>
+        <div>
+            <button class="nav-link" id="signup" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button"
+                role="tab" aria-controls="pills-contact" aria-selected="false">Зарегистрироваться</button>
+        </div>
         {{/if}}
-    </ul>
+    </div>
 </div>
-
 <script defer src="/js/header.js"></script>

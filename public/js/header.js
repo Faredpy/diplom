@@ -5,10 +5,7 @@ const logoutButton = document.querySelector("#logout")
 const ticketsButton = document.querySelector("#tickets")
 
 
-if(signInButton) {
-    homeButton.addEventListener("click", () => {
-        window.location = ('/')
-    })
+if (signInButton) {
     signInButton.addEventListener("click", () => {
         window.location = ('/users/login')
     })
@@ -17,12 +14,12 @@ if(signInButton) {
     })
 }
 
-if(logoutButton){
+if (logoutButton) {
     logoutButton.addEventListener("click", async () => {
         const response = await fetch('/logout', {
             method: 'DELETE'
         })
-        if(response.status !== 200) {
+        if (response.status !== 200) {
             alert('сессия отсутсвует')
         }
 
@@ -30,7 +27,7 @@ if(logoutButton){
     })
 }
 
-if(ticketsButton) {
+if (ticketsButton) {
     ticketsButton.addEventListener("click", async () => {
         window.location = ('/tickets')
     })
