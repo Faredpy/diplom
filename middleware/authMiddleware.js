@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
+const {User} = require('../models/models')
 
-module.exports = function (req, res, next) {
+module.exports = async function (req, res, next) {
     if (req.method === "OPTIONS") {
         next()
     }
@@ -11,6 +12,11 @@ module.exports = function (req, res, next) {
             return res.status(401).json({message: 'Пользователь не авторизован'})
         }
         const tokenDecoded = jwt.verify(token, process.env.SECRET_KEY)
+        await User.update({
+            online: true
+        }, {
+            where: { id: tokenDecoded.id }
+        })
         req.user = tokenDecoded
         next()
     }catch (e) {
