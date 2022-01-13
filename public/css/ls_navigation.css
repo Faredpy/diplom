@@ -1,0 +1,62 @@
+.ls-navigation{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: white;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 60px;
+  left: 0;
+  box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.25);
+}
+.ls-icons {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+}
+.buttons-div{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.icons-links{
+  /* width: 150px; */
+  margin-left: 20px;
+  text-decoration: none;
+}
+.ls-social-icons{
+  width: 32px;
+  height: 32px;
+}
+
+.social-links{
+  width:50px;
+  height: 50px;
+  padding: 1px;
+}
+.footer-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30px;
+}
+/* .close-div{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+} */
+.ls-close-but {
+  margin-left: 220px;
+}
+
+.manager-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 75px;
+  margin-bottom: 20px;
+}
