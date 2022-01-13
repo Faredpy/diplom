@@ -12,24 +12,27 @@ module.exports = async function (req, res, next) {
             return res.status(401).json({message: 'Пользователь не авторизован'})
         }
         const tokenDecoded = jwt.verify(token, process.env.SECRET_KEY)
-        const userUpdate = await User.update({
-            online: true
-        }, {
-            where: { id: tokenDecoded.id }
-        })
-
-
-        console.log(tokenDecoded)
+        await User.update({online: true}, {where: { id: tokenDecoded.id }})
+        const humanGet = await User.findOne({where: {id: tokenDecoded.id}, raw: true} )
+        tokenDecoded['firstName'] = humanGet.firstName
+        tokenDecoded['lastName'] = humanGet.lastName
+        tokenDecoded['phone'] = humanGet.phoneNumber
         if (tokenDecoded.role === 'USER') {
             tokenDecoded['roleName'] = 'Пользователь'
-            console.log('-------------------')
+            const managerGet = await User.findOne({include: [{ model: UserManager, where: { userId: tokenDecoded.id } }], raw: true })
+            tokenDecoded['managerId'] = managerGet.id
+            tokenDecoded['managerRoleName'] = 'Менеджер'
+            tokenDecoded['managerEmail'] = managerGet.email
+            tokenDecoded['managerPhone'] = managerGet.phoneNumber
+            tokenDecoded['managerFirstName'] = managerGet.firstName
+            tokenDecoded['managerLastName'] = managerGet.firstName
         }else if (tokenDecoded.role === 'MANAGER'){
             tokenDecoded['roleName'] = 'Менеджер'
         }else if (tokenDecoded.role === 'ADMIN'){
             tokenDecoded['roleName'] = 'Администратор'
         }
 
-        console.log(tokenDecoded)
+        // console.log(tokenDecoded)
         req.user = tokenDecoded
         next()
     }catch (e) {
