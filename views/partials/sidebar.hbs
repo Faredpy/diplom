@@ -21,8 +21,14 @@
   </div>
   {{#if isAuthorised}}
   <div class="manager-div">
+    {{#if isAuthorised.managerId}} <div>Ваш Менеджер</div> {{/if}}
     <img src="/img/icons8-manager-100.png" alt="">
-    <div>{{#if isAuthorised.managerName}} {{isAuthorised.managerName}} {{else}} Менеджер {{/if}}</div>
+    {{#if isAuthorised.managerId}}
+    <div>{{isAuthorised.managerFirstName}} {{isAuthorised.managerLastName}}</div>
+    <div>{{isAuthorised.managerEmail}}</div>
+    {{else}}
+    <div>Менеджер</div>
+    {{/if}}
   </div>
   {{/if}}
   <div class="footer-div">
