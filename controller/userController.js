@@ -14,7 +14,7 @@ class userController {
     async getProfile (req, res) {
         if(req.user) {
             const isAuthorised = req.user
-            console.log(req.user)
+            // console.log(req.user)
             return res.render('users', {isAuthorised})
         }
         return res.render('users')
@@ -77,6 +77,18 @@ class userController {
             return res.status(500).json({ error: e.message})
         }
     }
+
+    async putUser (req, res) {
+        const data = req.body
+        try {
+            const user = await User.update(data, {where: {email: data.email}})
+            res.json(user)
+        } catch(e) {
+          console.log(e)
+            return res.sendStatus(500)
+        }
+    }
+
 
 }
 
