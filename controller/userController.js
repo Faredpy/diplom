@@ -13,17 +13,40 @@ const generateJwt = (id, email, role) => {
 class userController {
     async getProfile (req, res) {
         if(req.user) {
+            try {
+
+            } catch (e) {
+
+            }
             if(req.user.role === 'MANAGER'){
-                // const manager = await User.findOne({where: {id: req.user.Id}})
+                console.log(req.user.id)
+                const managerTags = await User.findAll ({
+                    where: { id: req.user.id },
+                    include: {
+                        model: Tag,
+                        as: 'Tags',
+                        through: {
+                            model: UserTag,
+                            attributes: []
+                        }
+                    },
+                    raw: true
+                })
+                // const arrManTag = []
+                const arrManTag = managerTags.map((e) => {
+                    return e['Tags.title']
+                })
+
                 const tags = await Tag.findAll()
+                req.user.managerTags = arrManTag
                 req.user.tags = tags
-                // const managerTags = await Tag.findAll({where})
             }
             const isAuthorised = req.user
             // console.log(req.user)
             return res.render('users', {isAuthorised})
         }
         return res.render('users')
+
     }
 
     async registrationGet (req,res) {
@@ -89,12 +112,14 @@ class userController {
         console.log(data)
         try {
             const user = await User.update(data, {where: {email: data.email}})
-            data.tags.map(async el => {
-                const tagGetDb = await Tag.findOne({where: { title: el}, raw: true})
-                console.log(tagGetDb.id)
-                const tagsId = tagGetDb.id
-                await UserTag.create({userId:data.id, tagsId})
-            })
+            if(data.tags){
+                data.tags.map(async el => {
+                    const tagGetDb = await Tag.findOne({where: { title: el}, raw: true})
+                    console.log(tagGetDb.id)
+                    const tagsId = tagGetDb.id
+                    await UserTag.create({userId:data.id, tagsId})
+                })
+            }
             res.json(user)
         } catch(e) {
           console.log(e)
