@@ -1,37 +1,39 @@
 <form id="orderForm" action="">
-  <div>
-    <div>
-      <label for="productSelect">Тип работы</label>
-      <select name="changeProduct" id="productSelect" class="form-select" aria-label="Default select example">
-        <option selected>Выберите тип работы</option>
-        {{#each productsList}}
-        <option value="{{this.id}}">{{this.title}}</option>
-        {{/each}}
-      </select>
-    </div>
-    <div>
-      <label for="exampleDataList" class="form-label">Предмет</label>
-      <input name="changeTag" class="form-control" list="datalistOptions" id="exampleDataList"
-        placeholder="Введите предмет">
-      <datalist id="datalistOptions">
-        {{#each tagsList}}
-        <option id="{{this.id}}" value="{{this.title}}"></option>
-        {{/each}}
-      </datalist>
-    </div>
-    <div>
-      <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Объем работы</label>
-        <input name="Scope" type="text" class="form-control" id="exampleFormControlInput1"
-          placeholder="Введите объем работы">
+  <div class="inputs-div">
+    <div class="lr-in-div">
+      <div>
+        <label for="productSelect">Тип работы</label>
+        <select name="changeProduct" id="productSelect" class="form-select" aria-label="Default select example">
+          <option selected>Выберите тип работы</option>
+          {{#each productsList}}
+          <option value="{{this.id}}">{{this.title}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div>
+        <label for="exampleDataList" class="form-label">Предмет</label>
+        <input name="changeTag" class="form-control" list="datalistOptions" id="exampleDataList"
+          placeholder="Введите предмет">
+        <datalist id="datalistOptions">
+          {{#each tagsList}}
+          <option id="{{this.id}}" value="{{this.title}}"></option>
+          {{/each}}
+        </datalist>
+      </div>
+      <div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Объем работы</label>
+          <input name="Scope" type="text" class="form-control" id="exampleFormControlInput1"
+            placeholder="Введите объем работы">
+        </div>
       </div>
     </div>
-  </div>
-  <div>
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Описание</label>
-      <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"
-        placeholder="Введите описание"></textarea>
+    <div class="rh-inp-div">
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Описание</label>
+        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="6"
+          placeholder="Введите описание"></textarea>
+      </div>
     </div>
   </div>
   <div id="managerList">

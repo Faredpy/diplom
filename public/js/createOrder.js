@@ -12,7 +12,7 @@ function generateHTML(arr) {
   let result = ``;
   arr.forEach((el, index) => {
     result += `<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault${index}" value="${el.id}">
-      <label class="form-check-label" for="flexRadioDefault1">
+      <label class="form-check-label" for="flexRadioDefault${index}">
         <div class="card" style="width: 18rem;">
   <img src="/img/icons8-manager-100.png" class="card-img-top" alt="..." style="width:50%">
   <div class="card-body">
