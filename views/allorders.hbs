@@ -9,8 +9,8 @@
       <th scope="col">Менеджер</th>
       <th scope="col">Статус</th>
       <th scope="col">Дата создания</th>
-      {{#if isAuthorisated.manager}}
-      <th scope="col">Действия</th>
+      {{#if isAuthorised.manager}}
+      <th scope="col" id="actions">Действия</th>
       {{/if}}
     </tr>
   </thead>
@@ -26,66 +26,17 @@
       </td>
       <td class="status-table">{{this.Status.title}}</td>
       <td>{{this.createdAt}}</td>
-      {{#if isAuthorisated.manager}}
-      <td><button id="success-btn" type="button" class="btn btn-success">Подтвердить</button><br><button id="cancel-btn"
-          type="button" class="btn btn-danger">Отклонить</button></td>
+      {{#if ../isAuthorised.manager}}
+      <td><button id="success-btn" data-orderId="{{this.id}}" data-type="confirm" type="button" class="btn btn-success"
+          style="margin-bottom: 5px;">Подтвердить</button><button data-type="cancel" data-orderId="{{this.id}}"
+          id="cancel-btn" type="button" class="btn btn-danger">Отклонить</button></td>
       {{/if}}
     </tr>
-    {{!-- <div class="order">
-      <div class="order-lh">
-        <div>
-          {{this.Product.title}}
-        </div>
-        <div>
-          {{this.Tag.title}}
-        </div>
-      </div>
-      <div class="order-mh">
-        <div class="desctipt-of-order">{{this.description}}</div>
-        <div>{{this.scopeOfWork}}</div>
-      </div>
-      <div class="order-rh">
-        <div>
-          {{this.UserManager.User.firstName}} {{this.UserManager.User.lastName}}
-        </div>
-        <div>
-          {{this.UserManager.User.email}}
-        </div>
-        <div>
-          {{this.UserManager.User.phoneNumber}}
-        </div>
-        <div>
-          {{this.Status.title}}
-        </div>
-      </div>
-    </div> --}}
     {{/each}}
   </tbody>
 </table>
 {{else}}
 <h1>У вас еще нет заказов</h1>
 {{/if}}
-{{!-- <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Вид работы</th>
-      <th scope="col">Предмет</th>
-      <th scope="col">Объем работы</th>
-      <th scope="col">Описание</th>
-      <th scope="col">Менеджер</th>
-      <th scope="col">Статус</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">{{this.Product.title}}</th>
-      <td>{{this.Tag.title}}</td>
-      <td>{{this.scopeOfWork}}</td>
-      <td>{{this.description}}</td>
-      <td>{{this.UserManager.User.firstName}}
-        {{this.UserManager.User.lastName}}<br>{{this.UserManager.User.email}}<br>{{this.UserManager.User.phoneNumber}}
-      </td>
-      <td>{{this.Status.title}}</td>
-    </tr>
-  </tbody>
-</table> --}}
+
+<script defer src="/js/orderList.js"></script>
