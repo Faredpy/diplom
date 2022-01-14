@@ -2,7 +2,6 @@ class indexController {
     async indexGet (req, res) {
         if(req.user) {
             const isAuthorised = req.user
-            console.log(req.user)
             return res.render('index', {isAuthorised})
         }
         return res.render('index')

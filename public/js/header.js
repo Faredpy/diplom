@@ -2,7 +2,13 @@ const signInButton = document.querySelector("#signin")
 const signUpButton = document.querySelector("#signup")
 const logoutButton = document.querySelector("#logout")
 const profileButton = document.querySelector("#profile")
+const requestButton = document.querySelector("#request")
 
+if (requestButton) {
+    requestButton.addEventListener("click", () => {
+        window.location = ('/orders/form')
+    })
+}
 
 if (signInButton) {
     signInButton.addEventListener("click", () => {

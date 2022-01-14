@@ -2,6 +2,7 @@
   <div class="close-div">
     <button type="button" id="closeBut" class="btn-close ls-close-but" aria-label="Close"></button>
   </div>
+  {{#if isAuthorised.user}}
   <div class="buttons-div">
     <button type="button" id="makeOrder" class="btn btn-link icons-links"><img class="ls-icons"
         src="/img/icons8-purchase-order-64.png" alt="">
@@ -19,7 +20,34 @@
     <button type="button" id="faq" class="btn btn-link icons-links"><img class="ls-icons" src="/img/icons8-faq-64.png"
         alt="">Полезное</button>
   </div>
-  {{#if isAuthorised}}
+  {{/if}}
+    {{#if isAuthorised.manager}}
+        <div class="buttons-div">
+            <button type="button" id="ordersBut" class="btn btn-link icons-links"><img class="ls-icons"
+                                                                                       src="/img/icons8-shopping-bag-64.png" alt=""> Мои
+                заказы</button>
+            <button type="button" id="finance" class="btn btn-link icons-links"><img class="ls-icons"
+                                                                                     src="/img/icons8-money-64.png" alt="">Мои
+                финансы</button>
+            <button type="button" id="support" class="btn btn-link icons-links"><img class="ls-icons"
+                                                                                     src="/img/icons8-headset-64.png" alt="">Поддержка</button>
+            <button type="button" id="profileBut" class="btn btn-link icons-links"><img class="ls-icons"
+                                                                                        src="/img/icons8-male-user-64.png" alt="">Профиль</button>
+            <button type="button" id="faq" class="btn btn-link icons-links"><img class="ls-icons" src="/img/icons8-faq-64.png"
+                                                                                 alt="">Полезное</button>
+        </div>
+    {{/if}}
+    {{#if isAuthorised.admin}}
+        <div class="buttons-div">
+            <button type="button" id="support" class="btn btn-link icons-links"><img class="ls-icons"
+                                                                                     src="/img/icons8-headset-64.png" alt="">Поддержка</button>
+            <button type="button" id="profileBut" class="btn btn-link icons-links"><img class="ls-icons"
+                                                                                        src="/img/icons8-male-user-64.png" alt="">Профиль</button>
+            <button type="button" id="faq" class="btn btn-link icons-links"><img class="ls-icons" src="/img/icons8-faq-64.png"
+                                                                                 alt="">Полезное</button>
+        </div>
+    {{/if}}
+  {{#if isAuthorised.user}}
   <div class="manager-div">
     {{#if isAuthorised.managerId}}
         <div>Ваш Менеджер</div>

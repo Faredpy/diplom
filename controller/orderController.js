@@ -34,44 +34,41 @@ class orderController {
 
 
 
-
             if (isAuthorised.role === 'MANAGER') {
-                const userManagerReference = await UserManager.findAll({ where: { managerId: isAuthorised.id }, raw: true })
+                const userManagerReference = await UserManager.findOne({ where: { managerId: isAuthorised.id }, raw: true })
 
 
-                // if (!userManagerReference) {
-                //     res.render('allorders')
-                // }
-
-
-                const allders = () => {
-                    return userManagerReference.reduce(async (acc, el) => {
-                        const tempId = el.id
-                        const result = await Order.findAll({
-                            where: { userManagersId: tempId },
-                            include: [{
-                                model: UserManager,
-                                include: { model: User, attributes: ['firstName', 'lastName', 'email', 'phoneNumber'] }
-                            }, {
-                                model: Tag,
-                                attributes: ['title']
-                            }, {
-                                model: Status,
-                                attributes: ['title']
-                            }, {
-                                model: Product,
-                                attributes: ['title']
-                            }]
-                        })
-                        console.log(acc);
-                        console.log(result);
-                        acc.push(result)
-                        return
-                    }, [])
+                if (!userManagerReference) {
+                    res.render('allorders')
                 }
-                const allOrders = await allders()
-                console.log('---------------------------------------------------');
-                console.log(allOrders);
+
+                const tempId = await userManagerReference.id
+
+
+                const allOrders = await Order.findAll({
+                    where: { userManagersId: tempId },
+                    include: [{
+                        model: UserManager,
+                        include: { model: User, attributes: ['firstName', 'lastName', 'email', 'phoneNumber'] }
+                    }, {
+                        model: Tag,
+                        attributes: ['title']
+                    }, {
+                        model: Status,
+                        attributes: ['title']
+                    }, {
+                        model: Product,
+                        attributes: ['title']
+                    }]
+                })
+
+
+                if(req.headers.fetchreq){
+                    res.json({allOrders})
+                    return
+                }
+
+
                 res.render('allorders', { allOrders, isAuthorised })
                 return
             }
@@ -106,7 +103,10 @@ class orderController {
                     }]
                 })
 
-                console.log(isAuthorised);
+                if(req.headers.fetchreq){
+                    res.json({allOrders})
+                    return
+                }
                 res.render('allorders', { allOrders, isAuthorised })
                 return
             }

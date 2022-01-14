@@ -17,7 +17,6 @@ module.exports = async function (req, res, next) {
         tokenDecoded['firstName'] = humanGet.firstName
         tokenDecoded['lastName'] = humanGet.lastName
         tokenDecoded['phone'] = humanGet.phoneNumber
-        console.log(tokenDecoded)
         if (tokenDecoded.role === 'USER') {
             tokenDecoded['roleName'] = 'Пользователь'
 
@@ -34,7 +33,6 @@ module.exports = async function (req, res, next) {
                     tokenDecoded['admin'] = false
                     const dateLast = await User.findOne({where: {id: managerGet.id}})
                     const dateNew = new Date()
-                    console.log(dateLast)
                     const dataRes = dateNew - dateLast.updatedAt
                     if(dataRes / 1000 / 60 > 1) {
                         tokenDecoded['managerOnline'] = false
@@ -56,7 +54,6 @@ module.exports = async function (req, res, next) {
             tokenDecoded['manager'] = false
             tokenDecoded['admin'] = true
         }
-        console.log(tokenDecoded)
         // console.log(tokenDecoded)
         req.user = tokenDecoded
         next()

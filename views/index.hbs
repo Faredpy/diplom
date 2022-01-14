@@ -1,8 +1,64 @@
-<div class="banner">
-  <div class="banner-titles">
-    <div class="main-banner-title">Нужна консультация эксперта?</div>
-    <div class="secondary-banner-title">Оставь заявку на работу
-      и получи ее уже через 7 дней!</div>
-  </div>
-  <img src="/img/tild3431-6335-4532-b362-666432653766__horizontal-shot-wish.png" alt="" style="width: 40%">
-</div>
+{{#if isAuthorised.user}}
+    <div class="banner">
+        <div class="banner-titles">
+            <div class="main-banner-title">Нужна консультация эксперта?</div>
+            <div class="secondary-banner-title">Оставь заявку на работу
+                и получи ее уже через 7 дней!</div>
+        </div>
+        <img src="/img/tild3431-6335-4532-b362-666432653766__horizontal-shot-wish.png" alt="" style="width: 40%">
+    </div>
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Вид работы</th>
+                <th scope="col">Предмет</th>
+                <th scope="col">Объем работы</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Менеджер</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col" id="actions">Действия</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+{{/if}}
+{{#if isAuthorised.manager}}
+    <div class="banner">
+        <div class="banner-titles">
+            <div class="main-banner-title">Нужна консультация эксперта?</div>
+            <div class="secondary-banner-title">Оставь заявку на работу
+                и получи ее уже через 7 дней!</div>
+        </div>
+        <img src="/img/tild3431-6335-4532-b362-666432653766__horizontal-shot-wish.png" alt="" style="width: 40%">
+    </div>
+    <div class="container mt-5">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Вид работы</th>
+                <th scope="col">Предмет</th>
+                <th scope="col">Объем работы</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Менеджер</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col" id="actions">Действия</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+
+{{/if}}
+{{#if isAuthorised.admin}}
+    <h1>Здесь будет админская информация, статистика по пользователям и тд.</h1>
+{{/if}}
+
+<script defer src="/js/index.js"></script>
