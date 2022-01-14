@@ -36,6 +36,7 @@ btnProf.addEventListener("click", async (event) => {
 
     }else if(role === 'Менеджер'){
         if(tagsArr.length > 0) objUpdate.tags = tagsArr
+        // const aria = document
     }else if(role === 'Администратор'){
 
     }
@@ -52,6 +53,7 @@ btnProf.addEventListener("click", async (event) => {
     if(response.status !== 200) {
         alert('Ошибонька')
     }
+
 
     const nameAndLast = document.querySelector("#headOne")
     console.log(firstName)
