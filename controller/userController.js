@@ -32,12 +32,12 @@ class userController {
 
                 const tags = await Tag.findAll()
                 if (arrManTag[0] !== null) {
-                    req.user.managerTags = arrManTag
+                    req.user.managerTags = arrManTag.filter((val, i) => arrManTag.lastIndexOf(val) == i)
                 }
                 req.user.tags = tags
             }
             const isAuthorised = req.user
-            console.log(isAuthorised);
+            // console.log(isAuthorised);
             return res.render('users', { isAuthorised })
         }
         return res.render('users')
