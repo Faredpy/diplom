@@ -1,11 +1,11 @@
 const btnProf = document.querySelector('#btnProf')
 const tagsArr = []
 const role = document.querySelector('#role').innerText
-if(role === 'Менеджер' || role === 'Администратор') {
-    document.querySelector('.manager-div').hidden = true
-    document.querySelector('.footer-div').style = "margin-top:50px"
+if (role === 'Менеджер' || role === 'Администратор') {
+    // document.querySelector('.manager-div').hidden = true
+    // document.querySelector('.footer-div').style = "margin-top:50px"
 }
-if(role === 'Администратор') {
+if (role === 'Администратор') {
 
 }
 
@@ -52,10 +52,10 @@ btnProf.addEventListener("click", async (event) => {
 
     if (role === 'Пользователь') {
 
-    }else if(role === 'Менеджер'){
-        if(tagsArr.length > 0) objUpdate.tags = tagsArr
+    } else if (role === 'Менеджер') {
+        if (tagsArr.length > 0) objUpdate.tags = tagsArr
         // const aria = document
-    }else if(role === 'Администратор'){
+    } else if (role === 'Администратор') {
 
 
     }

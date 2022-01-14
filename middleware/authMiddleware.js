@@ -19,36 +19,35 @@ module.exports = async function (req, res, next) {
         tokenDecoded['phone'] = humanGet.phoneNumber
         if (tokenDecoded.role === 'USER') {
             tokenDecoded['roleName'] = 'Пользователь'
-
-            const managerGet = await User.findOne({include: [{ model: UserManager, where: { userId: tokenDecoded.id } }], raw: true })
-                if(managerGet) {
-                    tokenDecoded['managerId'] = managerGet.id
-                    tokenDecoded['managerRoleName'] = 'Менеджер'
-                    tokenDecoded['managerEmail'] = managerGet.email
-                    tokenDecoded['managerPhone'] = managerGet.phoneNumber
-                    tokenDecoded['managerFirstName'] = managerGet.firstName
-                    tokenDecoded['managerLastName'] = managerGet.lastName
-                    tokenDecoded['user'] = true
-                    tokenDecoded['manager'] = false
-                    tokenDecoded['admin'] = false
-                    const dateLast = await User.findOne({where: {id: managerGet.id}})
-                    const dateNew = new Date()
-                    const dataRes = dateNew - dateLast.updatedAt
-                    if(dataRes / 1000 / 60 > 1) {
-                        tokenDecoded['managerOnline'] = false
-                    }else{
-                        tokenDecoded['managerOnline'] = true
-                    }
-
+            tokenDecoded['user'] = true
+            tokenDecoded['manager'] = false
+            tokenDecoded['admin'] = false
+            const managerGet = await User.findOne({ include: [{ model: UserManager, where: { userId: tokenDecoded.id } }], raw: true })
+            if (managerGet) {
+                tokenDecoded['managerId'] = managerGet.id
+                tokenDecoded['managerRoleName'] = 'Менеджер'
+                tokenDecoded['managerEmail'] = managerGet.email
+                tokenDecoded['managerPhone'] = managerGet.phoneNumber
+                tokenDecoded['managerFirstName'] = managerGet.firstName
+                tokenDecoded['managerLastName'] = managerGet.lastName
+                const dateLast = await User.findOne({ where: { id: managerGet.id } })
+                const dateNew = new Date()
+                const dataRes = dateNew - dateLast.updatedAt
+                if (dataRes / 1000 / 60 > 1) {
+                    tokenDecoded['managerOnline'] = false
+                } else {
+                    tokenDecoded['managerOnline'] = true
                 }
-        }else if (tokenDecoded.role === 'MANAGER'){
+
+            }
+        } else if (tokenDecoded.role === 'MANAGER') {
 
             tokenDecoded['roleName'] = 'Менеджер'
             tokenDecoded['user'] = false
             tokenDecoded['manager'] = true
             tokenDecoded['admin'] = false
 
-        }else if (tokenDecoded.role === 'ADMIN') {
+        } else if (tokenDecoded.role === 'ADMIN') {
             tokenDecoded['roleName'] = 'Администратор'
             tokenDecoded['user'] = false
             tokenDecoded['manager'] = false
@@ -58,7 +57,7 @@ module.exports = async function (req, res, next) {
         req.user = tokenDecoded
         next()
 
-    }catch (e) {
+    } catch (e) {
         console.log(e)
 
         res.redirect('/users/login')

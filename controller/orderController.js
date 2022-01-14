@@ -39,7 +39,7 @@ class orderController {
 
 
                 if (!userManagerReference) {
-                    res.render('allorders')
+                    res.render('allorders', { isAuthorised })
                 }
 
                 const tempId = await userManagerReference.id
@@ -63,8 +63,8 @@ class orderController {
                 })
 
 
-                if(req.headers.fetchreq){
-                    res.json({allOrders})
+                if (req.headers.fetchreq) {
+                    res.json({ allOrders })
                     return
                 }
 
@@ -103,8 +103,8 @@ class orderController {
                     }]
                 })
 
-                if(req.headers.fetchreq){
-                    res.json({allOrders})
+                if (req.headers.fetchreq) {
+                    res.json({ allOrders })
                     return
                 }
                 res.render('allorders', { allOrders, isAuthorised })
