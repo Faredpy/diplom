@@ -3,10 +3,22 @@ const { Op } = require('sequelize')
 
 class orderController {
     async getAllOrder(req, res) {
+        const isAuthorised = req.user
         try {
-            const userManagerReference = await UserManager.findOne({ where: { userId: req.user.id }, raw: true })
-            const tempId = userManagerReference.id
-            console.log(userManagerReference);
+
+            if (isAuthorised.role === 'Admin') {
+
+            }
+            const userManagerReference = await UserManager.findOne({ where: { userId: isAuthorised.id }, raw: true })
+
+
+            if (!userManagerReference) {
+                res.render('allorders')
+            }
+
+            const tempId = await userManagerReference.id
+
+
             const allOrders = await Order.findAll({
                 where: { userManagersId: tempId },
                 include: [{
@@ -18,15 +30,14 @@ class orderController {
                 }, {
                     model: Status,
                     attributes: ['title']
+                }, {
+                    model: Product,
+                    attributes: ['title']
                 }]
             })
-            console.log('================================================');
-            console.log(allOrders[0].UserManager.User);
-            console.log('================================================');
-            console.log(allOrders[0].Tag);
-            console.log('================================================');
-            console.log(allOrders[0].Status);
-            res.render('allorders', { allOrders })
+
+
+            res.render('allorders', { allOrders, isAuthorised })
         } catch (error) {
             console.log(error.message);
         }
@@ -51,6 +62,7 @@ class orderController {
                 tagsId: data.currTag,
                 scopeOfWork: data.currScope,
                 userManagersId: tempId,
+                createdAt: new Date()
             })
             console.log(newOrder);
             res.json(newOrder)
@@ -60,10 +72,37 @@ class orderController {
     }
 
     async renderOrderForm(req, res) {
-        const productsList = await Product.findAll({ raw: true })
-        const tagsList = await Tag.findAll({ raw: true })
-        const isAuthorised = req.user
-        res.render('orderForm', { productsList, tagsList, isAuthorised })
+        try {
+            const productsList = await Product.findAll({ raw: true })
+            const tagsList = await Tag.findAll({ raw: true })
+            const isAuthorised = req.user
+            res.render('orderForm', { productsList, tagsList, isAuthorised })
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+    async editOrder(req, res) {
+        if (req.body.newStatus === 'CONFIRM') {
+            try {
+                const updatedOrder = Order.update({ statusId: 2 }, { where: { id: req.body.orderId } })
+                res.json(updatedOrder)
+            } catch (error) {
+                console.log(error.message);
+                res.sendStatus(500)
+            }
+        } else if (req.body.newStatus === 'CANCEL') {
+            try {
+                const updatedOrder = Order.update({ statusId: 4 }, { where: { id: req.body.orderId } })
+                res.json(updatedOrder)
+            } catch (error) {
+                console.log(error.message);
+                res.sendStatus(500)
+            }
+
+        } else {
+
+        }
     }
 
 }
