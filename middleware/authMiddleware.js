@@ -17,6 +17,7 @@ module.exports = async function (req, res, next) {
         tokenDecoded['firstName'] = humanGet.firstName
         tokenDecoded['lastName'] = humanGet.lastName
         tokenDecoded['phone'] = humanGet.phoneNumber
+        console.log(tokenDecoded)
         if (tokenDecoded.role === 'USER') {
             tokenDecoded['roleName'] = 'Пользователь'
 
@@ -28,14 +29,23 @@ module.exports = async function (req, res, next) {
                     tokenDecoded['managerPhone'] = managerGet.phoneNumber
                     tokenDecoded['managerFirstName'] = managerGet.firstName
                     tokenDecoded['managerLastName'] = managerGet.lastName
+                    tokenDecoded['user'] = true
+                    tokenDecoded['manager'] = false
+                    tokenDecoded['admin'] = false
                 }
         }else if (tokenDecoded.role === 'MANAGER'){
 
             tokenDecoded['roleName'] = 'Менеджер'
-        } else if (tokenDecoded.role === 'ADMIN') {
+            tokenDecoded['user'] = false
+            tokenDecoded['manager'] = true
+            tokenDecoded['admin'] = false
+        }else if (tokenDecoded.role === 'ADMIN') {
             tokenDecoded['roleName'] = 'Администратор'
+            tokenDecoded['user'] = false
+            tokenDecoded['manager'] = false
+            tokenDecoded['admin'] = true
         }
-
+        console.log(tokenDecoded)
         // console.log(tokenDecoded)
         req.user = tokenDecoded
         next()

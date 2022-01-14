@@ -1,5 +1,14 @@
 const btnProf = document.querySelector('#btnProf')
 const tagsArr = []
+const role = document.querySelector('#role').innerText
+if(role === 'Менеджер' || role === 'Администратор') {
+    document.querySelector('.manager-div').hidden = true
+    document.querySelector('.footer-div').style = "margin-top:50px"
+}
+if(role === 'Администратор') {
+
+}
+
 if (document.querySelector("#tagButton")) {
     const tagButton = document.querySelector("#tagButton")
     tagButton.addEventListener("click", (event) => {
@@ -7,8 +16,16 @@ if (document.querySelector("#tagButton")) {
         if (tag.length > 0) {
             tagsArr.push(tag)
             const skills = document.querySelector("#skills")
+            const progress = document.querySelector("#progress")
             document.querySelector("#tags").value = ''
             skills.insertAdjacentHTML("beforeend", `<span class="label label-primary mr5 mb10 ib lh15" style="background-color:#babdbf">${tag}</span> `)
+            progress.insertAdjacentHTML("beforeend", `
+                                                                        
+                                                                        <p>${tag}</p>
+                                                                        <div class="progress mb-3" style="height: 5px">
+                                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        </div>
+                                                                    `)
         }
     })
 }

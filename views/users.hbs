@@ -121,7 +121,7 @@
                                     <input type="hidden" id="idH" name="idH" value="{{this.isAuthorised.id}}" />
                                 </div>
                             </div>
-                            {{#if isAuthorised.tags}}
+                            {{#if isAuthorised.manager}}
                             <div class="row mb-3">
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Навыки</h6>
@@ -163,8 +163,8 @@
                     <div class="row mt-3">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-body">
-                                    <h5 class="d-flex align-items-center mb-3">Навыки в темах</h5>
+                                <div id="progress" class="card-body">
+                                    <h5 class="d-flex align-items-center mb-3">Профит</h5>
                                     {{#each isAuthorised.managerTags}}
                                         <p>{{this}}</p>
                                         <div class="progress mb-3" style="height: 5px">

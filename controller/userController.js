@@ -13,13 +13,7 @@ const generateJwt = (id, email, role) => {
 class userController {
     async getProfile (req, res) {
         if(req.user) {
-            try {
-
-            } catch (e) {
-
-            }
             if(req.user.role === 'MANAGER'){
-                console.log(req.user.id)
                 const managerTags = await User.findAll ({
                     where: { id: req.user.id },
                     include: {
@@ -32,17 +26,17 @@ class userController {
                     },
                     raw: true
                 })
-                // const arrManTag = []
                 const arrManTag = managerTags.map((e) => {
                     return e['Tags.title']
                 })
 
                 const tags = await Tag.findAll()
-                req.user.managerTags = arrManTag
+                if (arrManTag[0] !== null) {
+                    req.user.managerTags = arrManTag
+                }
                 req.user.tags = tags
             }
             const isAuthorised = req.user
-            // console.log(req.user)
             return res.render('users', {isAuthorised})
         }
         return res.render('users')
