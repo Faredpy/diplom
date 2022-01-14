@@ -89,12 +89,14 @@ class userController {
         console.log(data)
         try {
             const user = await User.update(data, {where: {email: data.email}})
-            data.tags.map(async el => {
-                const tagGetDb = await Tag.findOne({where: { title: el}, raw: true})
-                console.log(tagGetDb.id)
-                const tagsId = tagGetDb.id
-                await UserTag.create({userId:data.id, tagsId})
-            })
+            if(data.tags){
+                data.tags.map(async el => {
+                    const tagGetDb = await Tag.findOne({where: { title: el}, raw: true})
+                    console.log(tagGetDb.id)
+                    const tagsId = tagGetDb.id
+                    await UserTag.create({userId:data.id, tagsId})
+                })
+            }
             res.json(user)
         } catch(e) {
           console.log(e)

@@ -76,6 +76,7 @@
                                         <h6 class="mb-0">Телефон</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
+                                        <input type="hidden" id="idH" name="idH" value="{{this.isAuthorised.id}}"/>
                                         <input id="phoneNumber" name="phoneNumber" type="text" class="form-control" value="{{this.isAuthorised.phone}}">
                                     </div>
                                 </div>
@@ -89,7 +90,7 @@
                                     {{!--{{#each isAuthorised.managerTags}}
                                         <span class="label label-primary mr5 mb10 ib lh15" style="background-color:#babdbf">{{this.title}}</span>
                                     {{/each}}--}}
-                                    <input type="hidden" id="idH" name="idH" value="{{this.isAuthorised.id}}"/>
+
                                 </div>
                                 <div class="col-sm-3 mt-5">
                                     <h6 class="mb-0">Добавить навык</h6>
